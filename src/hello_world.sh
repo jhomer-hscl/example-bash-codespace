@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-function create_file () {
-    local file="$1"
-    touch $file
-}
+source functions.sh
+
+declare -r FILE=file
+
+create_file "my_file"
+if [ $? != 0 ]; then
+        echo " failed to create file"
+fi
