@@ -3,6 +3,7 @@
         "vscode": {
             "extensions": [
                 "foxundermoon.shell-format",
+                "jetmartin.bats",
                 "timonwong.shellcheck"
             ]
         }
