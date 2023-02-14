@@ -1,0 +1,11 @@
+{
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "foxundermoon.shell-format",
+                "timonwong.shellcheck"
+            ]
+        }
+    },
+    "postCreateCommand": ".devcontainer/script-library/post-create.sh"
+}
