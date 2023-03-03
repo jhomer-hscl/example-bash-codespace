@@ -2,8 +2,10 @@
     "customizations": {
         "vscode": {
             "extensions": [
+                "DavidAnson.vscode-markdownlint",
                 "foxundermoon.shell-format",
                 "jetmartin.bats",
+                "streetsidesoftware.code-spell-checker",
                 "timonwong.shellcheck"
             ]
         }
