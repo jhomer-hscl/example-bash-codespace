@@ -1,0 +1,19 @@
+{
+    "shellformat.effectLanguages": [
+
+        "shellscript",
+        "dockerfile",
+        "dotenv",
+        "hosts",
+        "jvmoptions",
+        "ignore",
+        "gitignore",
+        "properties",
+        "spring-boot-properties",
+        "azcli",
+        "bats"
+    ],
+    "shellformat.flag": "-i 4 -ci -bn",
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.wordWrapColumn": 80
+}

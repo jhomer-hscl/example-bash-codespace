@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-
-
 if [[ ! $1 ]]; then
     # Always returns a path relative to the scipt
     #
