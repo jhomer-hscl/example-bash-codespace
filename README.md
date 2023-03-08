@@ -6,7 +6,18 @@ Example codespace for bash programming, includes bats, shellcheck, shfmt and oth
 
 ## Dependencies
 
-`bats` and required helpers are included as submodules.
+The following dependencies are included as git submodules:
+
+* bats-core at [v1.9.0](https://github.com/bats-core/bats-core/releases/tag/v1.9.0)
+* bats-assert at [v2.1.0](https://github.com/bats-core/bats-assert/releases/tag/v2.1.0)
+* bats-file at [v0.3.0](https://github.com/bats-core/bats-file/releases/tag/v0.3.0)
+* bats-support at [v0.3.0](https://github.com/bats-core/bats-support/releases/tag/v0.3.0)
+
+These will need to be initialised in any new codespace or after cloning this repository if `--recursive` was not used
+
+```shell
+git submodule update --init
+```
 
 ## Example Scripts
 
