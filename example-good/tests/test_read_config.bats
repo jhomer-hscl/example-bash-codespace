@@ -1,15 +1,30 @@
-#!/workspaces/example-bash-codespace/test/bats/bin/bats
+#!/usr/bin/env bats
 
-load $CODESPACE_VSCODE_FOLDER/test/test_helper/bats-support/load
-load $CODESPACE_VSCODE_FOLDER/test/test_helper/bats-assert/load
-load $CODESPACE_VSCODE_FOLDER/test/test_helper/bats-file/load
+if [[ -z $CODESPACE_VSCODE_FOLDER ]]; then
+    test_helper_path="$(dirname "$(dirname "$(dirname "$BATS_TEST_FILENAME")")")"/test/test_helper
+else
+    test_helper_path="$CODESPACE_VSCODE_FOLDER/test/test_helper"
+fi
+
+load "${test_helper_path}/bats-support/load.bash"
+load "${test_helper_path}/bats-assert/load.bash"
+load "${test_helper_path}/bats-file/load.bash"
+
+setup() {
+    # get the containing directory of this file
+    # use $BATS_TEST_FILENAME instead of ${BASH_SOURCE[0]} or $0,
+    # as those will point to the bats executable's location or the preprocessed file respectively
+    DIR="$( cd "$( dirname "$BATS_TEST_FILENAME" )" >/dev/null 2>&1 && pwd )"
+    # make executables in src/ visible to PATH
+    PATH="$DIR/../src:$PATH"
+}
 
 @test "read_config successful with no input specified" {
     # GIVEN:    No arguments are passed AND we hope nothing is using TCP port 8080
     # WHEN:     The script runs
     # THEN:     The values from the file are printed out
 
-    run ../src/read_config.bash
+    run read_config.bash
     assert_success
     assert_line --index 0 --regexp '^Var1:\s+foo$'
     assert_line --index 1 --regexp '^Var2:\s+bar$'
@@ -20,7 +35,7 @@ load $CODESPACE_VSCODE_FOLDER/test/test_helper/bats-file/load
     # WHEN:     The script runs
     # THEN:     The values from the file are printed out
 
-    run ../src/read_config.bash data/config.json
+    run read_config.bash "$(dirname "$BATS_TEST_FILENAME" )/data/config.json"
     assert_success
     assert_line --index 0 --regexp '^Var1:\s+foo$'
     assert_line --index 1 --regexp '^Var2:\s+bar$'
@@ -39,7 +54,7 @@ load $CODESPACE_VSCODE_FOLDER/test/test_helper/bats-file/load
     }
     export -f fuser
 
-    run ../src/read_config.bash data/config.json
+    run read_config.bash "$(dirname "$BATS_TEST_FILENAME" )/data/config.json"
 
     unset fuser
 
@@ -60,7 +75,7 @@ load $CODESPACE_VSCODE_FOLDER/test/test_helper/bats-file/load
     }
     export -f fuser
 
-    run ../src/read_config.bash data/config.json
+    run read_config.bash "$(dirname "$BATS_TEST_FILENAME" )/data/config.json"
 
     unset fuser
 
@@ -99,13 +114,13 @@ load $CODESPACE_VSCODE_FOLDER/test/test_helper/bats-file/load
     }
     export -f fuser
 
-    run ../src/read_config.bash data/config_does_not_exist.json
+    run read_config.bash "$(dirname "$BATS_TEST_FILENAME" )/data/config_does_not_exist.json"
 
     unset fuser
 
     assert_failure
-    assert_line --index 0 "jq: error: Could not open file data/config_does_not_exist.json: No such file or directory"
-    assert_line --index 1 "Error reading config: data/config_does_not_exist.json"
+    assert_line --index 0 "jq: error: Could not open file $(dirname "$BATS_TEST_FILENAME" )/data/config_does_not_exist.json: No such file or directory"
+    assert_line --index 1 "Error reading config: $(dirname "$BATS_TEST_FILENAME" )/data/config_does_not_exist.json"
 
 }
 
@@ -122,7 +137,7 @@ load $CODESPACE_VSCODE_FOLDER/test/test_helper/bats-file/load
     }
     export -f fuser
 
-    run ../src/read_config.bash "data/config copy.json"
+    run read_config.bash "$(dirname "$BATS_TEST_FILENAME" )/data/config copy.json"
 
     unset fuser
 
@@ -144,7 +159,7 @@ load $CODESPACE_VSCODE_FOLDER/test/test_helper/bats-file/load
     }
     export -f fuser
 
-    run ../src/read_config.bash "data/bad_json.json"
+    run read_config.bash "$(dirname "$BATS_TEST_FILENAME" )/data/bad_json.json"
 
     unset fuser
 
@@ -164,7 +179,7 @@ load $CODESPACE_VSCODE_FOLDER/test/test_helper/bats-file/load
     }
     export -f fuser
 
-    run ../src/read_config.bash "data/empty_json.json"
+    run read_config.bash "$(dirname "$BATS_TEST_FILENAME" )/data/empty_json.json"
 
     unset fuser
 

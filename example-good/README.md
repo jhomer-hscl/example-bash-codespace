@@ -64,3 +64,9 @@ Additional test added for the remaining problem scenarios that were shown in [ex
 
 * read_config - a config file with a space is specified
 * read_config - a config file which is invalid json
+
+## Running the tests
+
+If `bats` is in your path simply run `bats example-good/tests/test_read_condig.bats`.
+
+If not then run `<path to bats>/bats example-good/tests/test_read_condig.bats`. The tests will run regardless of where you call them from.
