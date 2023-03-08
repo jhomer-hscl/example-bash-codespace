@@ -1,3 +1,5 @@
+#!/usr/bin/env bats
+
 if [[ -z $CODESPACE_VSCODE_FOLDER ]]; then
     test_helper_path="$(dirname "$(dirname "$(dirname "$BATS_TEST_FILENAME")")")"/test/test_helper
 else
