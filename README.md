@@ -4,6 +4,10 @@
 
 Example codespace for bash programming, includes bats, shellcheck, shfmt and other useful plugins and configuration for simple projects and demonstrating basic code quality and testing methodologies.
 
+## Dependencies
+
+`bats` and required helpers are included as submodules.
+
 ## Example Scripts
 
 ### example-bad
@@ -27,6 +31,10 @@ Feel free to fork this repository it comes with setup for github codespace and a
 You should easily be able to look at the VSCode problem reporting, which this is intended to highlight, run the tests, etc. within the free personal allowances.
 
 Alternatively, clone the repo and work locally.
+
+```shell
+git clone https://github.com/jhomer-hscl/example-bash-codespace.git --recursive
+```
 
 ### Contributing
 
