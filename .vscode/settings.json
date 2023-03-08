@@ -14,6 +14,8 @@
         "bats"
     ],
     "shellformat.flag": "-i 4 -ci -bn",
-    "editor.wordWrap": "wordWrapColumn",
-    "editor.wordWrapColumn": 80
+    "[shellscript]": {
+        "editor.wordWrap": "wordWrapColumn",
+        "editor.wordWrapColumn": 80
+    }
 }

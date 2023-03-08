@@ -12,6 +12,8 @@
 
 `tests/data` data used in the test scripts.
 
+`.vscode/settings.json` example workspace settings with configuration for shfmt and column wrapping for `shellscript` files as per [Shell Style Guide](https://google.github.io/styleguide/shellguide.html)
+
 ## The Improvement Process
 
 Explained this as there were more steps that expected, which is good.
